@@ -1,0 +1,109 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0D1B2A;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  padding: 30px;
+}
+
+.upload-box {
+  border: 2px solid #7f5af0;
+  width: 60vw;                /* Responsive width */
+  height: auto;               /* Let height adjust to content */
+  min-height: 60vh;           /* Ensure enough height for drag area */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  margin: 40px auto;
+  background-color:#006d77;
+  padding: 25px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px #7f5af0;
+  transition: 0.3s ease-in-out;
+}
+
+.upload-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.upload-box img.preview {
+  width: 80%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+.upload-box p {
+  margin: 0;
+  color: #E0E1DD;
+  text-align: center;
+  font-size: 18px;
+}
+
+button {
+  padding: 14px 28px; /* Bigger button */
+  background: linear-gradient(to right, #7b2cbf, #4361ee);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background: linear-gradient(to right, #4cc9f0, #4895ef);
+  transform: scale(1.05); /* Gently enlarges the button */
+}
+
+.good-ux {
+  color: #00ff7f;  /* Soft green for Good UX */
+  font-weight: bold;
+}
+
+.bad-ux {
+  color: #ff4d4d;  /* Reddish tone for Bad UX */
+  font-weight: bold;
+}
+
+.responsive-img {
+  max-width: 90vw;
+  margin: auto;
+  text-align: center;
+}
+
+.responsive-img img {
+  width: 100%;
+  height: auto;
+  max-width: 400px; /* keeps it from stretching too wide on desktop */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+@media (max-width: 768px) {
+  .upload-box {
+    width: 90vw;
+    min-height: 50vh;
+  }
+
+  .upload-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .upload-box img.preview {
+    width: 90%;
+    max-height: 200px;
+  }
+}
+
+

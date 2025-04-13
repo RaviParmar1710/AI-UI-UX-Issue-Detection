@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prediction Result</h1>
+    <div class="responsive-img">
+      <img src="{{ img_path }}" alt="Uploaded Screenshot">
+  </div>
+      <h2 class="{% if label == 'Good UX' %}good-ux{% else %}bad-ux{% endif %}">{{ label }}</h2>
+    <!-- <p>Confidence: {{ confidence }}%</p> -->
+    <a href="/" style="color: #00e0ff; text-decoration: none;">Try Another</a>
+  </div>
+</body>
+</html>
