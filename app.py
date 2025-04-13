@@ -8,7 +8,7 @@ import tensorflow as tf
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-model = tf.keras.models.load_model('D://UI UX code//ai ui ux detector//model//ui_ux_model.keras')  # Update path as needed
+model = tf.keras.models.load_model('model/ui_ux_model.keras')  # Update path as needed
 
 def predict_image(path):
     img = Image.open(path).resize((224, 224))
