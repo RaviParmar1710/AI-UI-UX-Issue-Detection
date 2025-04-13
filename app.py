@@ -8,7 +8,7 @@ import tensorflow as tf
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-model = tf.keras.models.load_model('D://UI UX code//ai ui ux detector//model//ui_ux_model.keras')  # Update path as needed
+model = tf.keras.models.load_model('model/ui_ux_model.keras')  # Update path as needed
 
 def predict_image(path):
     img = Image.open(path).resize((224, 224))
@@ -27,9 +27,12 @@ def index():
         return render_template("result.html", img_path=filepath, label=label, confidence=confidence)
     return render_template("index.html")
 
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # default to 5000 if not set
     print("✅ App is running at http://localhost:5000")
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
 
