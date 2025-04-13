@@ -88,6 +88,13 @@ button:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
+.footer-credit {
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+  font-size: 14px;
+}
+
 
 @media (max-width: 768px) {
   .upload-box {
