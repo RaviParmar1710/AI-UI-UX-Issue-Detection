@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ui-ux-detector
+    name: smart-ui-ux-detector
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --workers 1 --timeout 300

@@ -36,4 +36,4 @@ if __name__ == "__main__":
 
 
 
-#     python app.py
+#     python app.py on local machine
