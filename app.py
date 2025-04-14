@@ -8,11 +8,19 @@ import tensorflow as tf
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-model = tf.keras.models.load_model('model/ui_ux_model.keras')  # Update path as needed
+# Lazy-load the model
+model = None
+
+def load_model():
+    global model
+    if model is None:
+        model = tf.keras.models.load_model('model/ui_ux_model.keras')
+    return model
 
 def predict_image(path):
     img = Image.open(path).resize((224, 224))
     img = np.expand_dims(np.array(img) / 255.0, axis=0)
+    model = load_model()
     pred = model.predict(img)[0][0]
     return "Good UX" if pred < 0.5 else "Bad UX", round(float(pred), 1)
 
@@ -27,13 +35,7 @@ def index():
         return render_template("result.html", img_path=filepath, label=label, confidence=confidence)
     return render_template("index.html")
 
-
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # default to 5000 if not set
-    print(f"✅ App is running on port {port}")
-    app.run(host='0.0.0.0', port=port, debug=True)
-
-
-
-#     python app.py on local machine
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
