@@ -1,35 +1,42 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #0D1B2A;
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
   color: #fff;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   padding: 30px;
 }
 
+.main-heading {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
 .upload-box {
-  border: 2px solid #7f5af0;
-  width: 60vw;                /* Responsive width */
-  height: auto;               /* Let height adjust to content */
-  min-height: 60vh;           /* Ensure enough height for drag area */
+  border: 2px solid #e6dffd;
+  width: 60vw;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 16px;
   margin: 40px auto;
-  background-color:#006d77;
+  background-color: #477abd;
   padding: 25px;
   box-sizing: border-box;
-  box-shadow: 0 0 10px #7f5af0;
+  box-shadow: 0 0 15px #c3d4f5;
   transition: 0.3s ease-in-out;
 }
 
 .upload-icon {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   margin-bottom: 10px;
 }
 
@@ -44,34 +51,40 @@ body {
 .upload-box p {
   margin: 0;
   color: #E0E1DD;
-  text-align: center;
   font-size: 18px;
 }
 
-button {
-  padding: 14px 28px; /* Bigger button */
+button, .try-again-btn {
+  padding: 14px 28px;
   background: linear-gradient(to right, #7b2cbf, #4361ee);
   border: none;
   color: white;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-  transition: 0.3s ease; /* Smooth transition for hover effects */
+  transition: 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
-button:hover {
+button:hover, .try-again-btn:hover {
   background: linear-gradient(to right, #4cc9f0, #4895ef);
-  transform: scale(1.05); /* Gently enlarges the button */
+  transform: scale(1.05);
 }
 
 .good-ux {
-  color: #00ff7f;  /* Soft green for Good UX */
+  color: #00ff7f;
   font-weight: bold;
+  font-size: 1.8rem;
+  margin-top: 20px;
 }
 
 .bad-ux {
-  color: #ff4d4d;  /* Reddish tone for Bad UX */
+  color: #ff4d4d;
   font-weight: bold;
+  font-size: 1.8rem;
+  margin-top: 20px;
 }
 
 .responsive-img {
@@ -83,9 +96,9 @@ button:hover {
 .responsive-img img {
   width: 100%;
   height: auto;
-  max-width: 400px; /* keeps it from stretching too wide on desktop */
+  max-width: 400px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
 .footer-credit {
@@ -95,7 +108,7 @@ button:hover {
   font-size: 14px;
 }
 
-
+/* Responsive Tweaks */
 @media (max-width: 768px) {
   .upload-box {
     width: 90vw;
@@ -103,8 +116,8 @@ button:hover {
   }
 
   .upload-icon {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
   }
 
   .upload-box img.preview {
@@ -112,5 +125,3 @@ button:hover {
     max-height: 200px;
   }
 }
-
-

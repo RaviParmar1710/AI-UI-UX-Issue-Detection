@@ -9,60 +9,74 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>🧠Smart UI/UX Issue Detector</h1>
+<div class="container">
+  <h1 class="main-heading">🧠 Smart UI/UX Issue Detector</h1>
 
-    <form action="/" method="post" enctype="multipart/form-data">
-      <div class="upload-box" id="drop-area">
-        <img src="{{ url_for('static', filename='img/upload.png') }}" alt="Upload Icon">
-        <p>Drag & drop your UI screenshot here or click to browse</p>
-        <input type="file" name="screenshot" id="fileElem" accept="image/*" onchange="previewFile()" hidden>
-        <img id="preview" class="preview" src="#" alt="Image Preview" style="display:none;" />
-      </div>
-
-      <button type="submit">Detect</button>
-    </form>
-
-    <div id="result">
-      <!-- Prediction result will be shown here -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-message">
+      {% for message in messages %}
+        <p style="color: #ff4d4d; font-weight: bold;">{{ message }}</p>
+      {% endfor %}
     </div>
-  </div>
+  {% endif %}
+{% endwith %}
 
-  <script>
-    const dropArea = document.getElementById("drop-area");
-    const fileInput = document.getElementById("fileElem");
-    const previewImg = document.getElementById("preview");
+  <form action="/" method="post" enctype="multipart/form-data">
+    <div class="upload-box" id="drop-area">
+      <img src="{{ url_for('static', filename='img/upload.png') }}" alt="Upload Icon" class="upload-icon">
+      <p>Drag & drop your UI screenshot here or click to browse</p>
+      <input type="file" name="screenshot" id="fileElem" accept="image/*" onchange="previewFile()" hidden>
+      <img id="preview" class="preview" src="#" alt="Image Preview" style="display:none;" />
+    </div>
 
-    dropArea.addEventListener("click", () => fileInput.click());
+    <button type="submit">🚀 Detect Issues</button>
+  </form>
 
-    dropArea.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      dropArea.classList.add("highlight");
-    });
+  <div id="result"></div>
+</div>
 
-    dropArea.addEventListener("dragleave", () => {
-      dropArea.classList.remove("highlight");
-    });
+<script>
+  const dropArea = document.getElementById("drop-area");
+  const fileInput = document.getElementById("fileElem");
+  const previewImg = document.getElementById("preview");
 
-    dropArea.addEventListener("drop", (e) => {
-      e.preventDefault();
-      dropArea.classList.remove("highlight");
-      const file = e.dataTransfer.files[0];
-      fileInput.files = e.dataTransfer.files;
-      previewFile(file);
-    });
+  dropArea.addEventListener("click", () => fileInput.click());
 
-    function previewFile(file = fileInput.files[0]) {
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          previewImg.src = reader.result;
-          previewImg.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  </script>
-  <p class="footer-credit">Developed by Ravi Parmar 🚀</p>
+  dropArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropArea.classList.add("highlight");
+  });
+
+  dropArea.addEventListener("dragleave", () => {
+    dropArea.classList.remove("highlight");
+  });
+
+  dropArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropArea.classList.remove("highlight");
+    const file = e.dataTransfer.files[0];
+    fileInput.files = e.dataTransfer.files;
+    previewFile(file);
+  });
+
+  function previewFile(file = fileInput.files[0]) {
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      previewImg.src = reader.result;
+      previewImg.style.display = "block";
+      previewImg.style.width = "90%";   // 🔥 Bigger width inside upload box
+      previewImg.style.maxHeight = "400px"; // 🔥 Allow taller preview
+      previewImg.style.objectFit = "contain"; 
+      previewImg.style.marginTop = "20px";
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+</script>
+
+<p class="footer-credit">Developed with ❤️ by Ravi Parmar</p>
 </body>
 </html>
