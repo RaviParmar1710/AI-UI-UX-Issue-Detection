@@ -6,19 +6,26 @@ import numpy as np
 import tensorflow as tf
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-MAX_FILE_SIZE_MB = 5  # Optional: max file size limit
+MAX_FILE_SIZE_MB = 5
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024  # 1 MB limit
 
-model = tf.keras.models.load_model('model/ui_ux_model.keras')
+# Lazy-load the model
+model = None
+def load_model():
+    global model
+    if model is None:
+        model = tf.keras.models.load_model('model/ui_ux_model.keras')
+    return model
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def predict_image(path):
+    model = load_model()  # Ensure model is loaded
     img = Image.open(path).resize((224, 224))
     img = np.expand_dims(np.array(img) / 255.0, axis=0)
     pred = model.predict(img)[0][0]
@@ -59,12 +66,9 @@ def index():
 def request_entity_too_large(error):
     return "⚠️ File too large. Please upload an image smaller than 1 MB.", 413
 
-
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
-
 
 
 
