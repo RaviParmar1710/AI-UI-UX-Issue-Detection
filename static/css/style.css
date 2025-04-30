@@ -50,9 +50,11 @@ body {
 
 .upload-box p {
   margin: 0;
-  color: #E0E1DD;
-  font-size: 18px;
+  color: #ffffff;         /* Brighter white */
+  font-size: 21px;        /* Slightly larger */
+  font-weight: 700;       /* Bolder text */
 }
+
 
 button, .try-again-btn {
   padding: 14px 28px;
